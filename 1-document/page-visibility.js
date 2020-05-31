@@ -6,7 +6,7 @@ This code blocks visibilitychange by overriding Node.prototype.
 /*
 var a = Node.prototype.addEventListener;
 Node.prototype.addEventListener = function(e) {
-    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
+    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange' && e !== 'mozvisibilitychange') {
         a.apply(this, arguments)
     }
 }

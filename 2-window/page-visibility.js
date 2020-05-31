@@ -10,7 +10,7 @@ This will return false.
 /*
 var a = Node.prototype.addEventListener;
 Node.prototype.addEventListener = function(e) {
-    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
+    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange' && e !== 'mozvisibilitychange') {
         a.apply(this, arguments)
     }
 }
@@ -25,7 +25,7 @@ Instead of overriding Node, a better idea is to use EventTarget.
 /*
 var a = EventTarget.prototype.addEventListener;
 EventTarget.prototype.addEventListener = function(e) {
-    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange') {
+    if (e !== 'visibilitychange' && e !== 'webkitvisibilitychange' && e !== 'mozvisibilitychange') {
         a.apply(this, arguments)
     }
 }
