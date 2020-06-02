@@ -27,9 +27,11 @@
 
 // To block the blur event it is enough to add it to the addEventListener override:
 
-/*
+
 var a = EventTarget.prototype.addEventListener;
 EventTarget.prototype.addEventListener = function(e) {
+    // Also check if the element is window or document, so that blur doesn't get blocked for other elements.
+    var isWindowOrDocument = this === window || this === document; 
 
     var isNotForbiddenEvent = ![
         'visibilitychange', 
@@ -38,11 +40,10 @@ EventTarget.prototype.addEventListener = function(e) {
         'blur'
     ].includes(e);
 
-    if (isNotForbiddenEvent) {
+    if (isWindowOrDocument && isNotForbiddenEvent) {
         a.apply(this, arguments)
     }
 }
-*/
 
 var hidden;
 if (typeof document.hidden !== "undefined") {
@@ -80,7 +81,7 @@ if (typeof document.addEventListener === "undefined" || typeof document[hidden] 
 } else {
     
     //I use blur to detect when the user has switched tab, and focus to detect when user came back.
-    window.addEventListener("blur", handleVisibilityChange);
+    window.onblur = handleVisibilityChange;
     window.addEventListener("focus", handleVisibilityChange);
 
     videoElement.addEventListener("pause", function(){
