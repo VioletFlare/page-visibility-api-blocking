@@ -30,8 +30,8 @@
 
 var a = EventTarget.prototype.addEventListener;
 EventTarget.prototype.addEventListener = function(e) {
-    // Also check if the element is window or document, so that blur doesn't get blocked for other elements.
-    var isWindowOrDocument = this === window || this === document; 
+    // Also check if the element is not window or document, so that blur doesn't get blocked for other elements.
+    var isNotWindowOrDocument = !(this === window || this === document); 
 
     var isNotForbiddenEvent = ![
         'visibilitychange', 
@@ -40,7 +40,7 @@ EventTarget.prototype.addEventListener = function(e) {
         'blur'
     ].includes(e);
 
-    if (isWindowOrDocument && isNotForbiddenEvent) {
+    if (isNotWindowOrDocument || isNotForbiddenEvent) {
         a.apply(this, arguments)
     }
 }
