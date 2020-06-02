@@ -6,10 +6,10 @@
     This time we'll make use of the gist:
     https://gist.github.com/eligrey/384583
 
-    Whenever something writes to the attribute, the attribute will be set back to null.
-
     I included object-watch.js in the index.html file.
 */
+
+// Whenever something writes to the attribute, the attribute will be set back to null.
 
 /*
 window.watch("onblur", () => null);
