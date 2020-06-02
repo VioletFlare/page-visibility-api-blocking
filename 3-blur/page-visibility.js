@@ -81,7 +81,7 @@ if (typeof document.addEventListener === "undefined" || typeof document[hidden] 
 } else {
     
     //I use blur to detect when the user has switched tab, and focus to detect when user came back.
-    window.onblur = handleVisibilityChange;
+    window.addEventListener("blur", handleVisibilityChange);
     window.addEventListener("focus", handleVisibilityChange);
 
     videoElement.addEventListener("pause", function(){
