@@ -37,7 +37,8 @@ EventTarget.prototype.addEventListener = function(e) {
         'visibilitychange', 
         'webkitvisibilitychange', 
         'mozvisibilitychange', 
-        'blur'
+        'blur',
+        'focusout' // focusout is similar to blur
     ].includes(e);
 
     if (isNotWindowOrDocument || isNotForbiddenEvent) {
